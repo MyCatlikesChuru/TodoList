@@ -12,6 +12,7 @@ import solo.project.todolist.entity.TodoList;
 import solo.project.todolist.mapper.TodoListMapper;
 import solo.project.todolist.service.TodoListService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Slf4j
@@ -24,7 +25,7 @@ public class TodoListController {
     private final TodoListMapper todoListMapper;
 
     @PostMapping
-    public ResponseEntity createList(@RequestBody TodoListDto todoListDto){
+    public ResponseEntity createList(@Valid @RequestBody TodoListDto todoListDto){
 
         log.info("-----> create 실행됨");
 
