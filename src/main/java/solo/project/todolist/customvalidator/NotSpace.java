@@ -1,4 +1,4 @@
-package solo.project.customvalidator;
+package solo.project.todolist.customvalidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

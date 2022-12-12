@@ -1,11 +1,10 @@
-package solo.project.customvalidator;
+package solo.project.todolist.customvalidator;
 
 
 import org.springframework.util.StringUtils;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import javax.validation.Payload;
 
 public class NotSpaceValidator implements ConstraintValidator<NotSpace,String > {
 

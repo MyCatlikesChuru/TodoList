@@ -27,8 +27,6 @@ public class TodoListController {
     @PostMapping
     public ResponseEntity createList(@Valid @RequestBody TodoListDto todoListDto){
 
-        log.info("-----> create 실행됨");
-
         TodoList todoList = todoListService.createTodoList(todoListMapper.todoListDtoToTodoList(todoListDto));
         TodoListResponseDto todoListResponseDto = todoListMapper.todoListToTodoListResponseDto(todoList);
 
@@ -54,8 +52,6 @@ public class TodoListController {
     public ResponseEntity updateList(@PathVariable Long listId,
                                      @RequestBody TodoListDto todoListDto){
 
-        log.info("-----> update 실행됨");
-
         TodoList todoList = todoListService.changeTodoList(listId, todoListMapper.todoListDtoToTodoList(todoListDto));
         TodoListResponseDto todoListResponseDto = todoListMapper.todoListToTodoListResponseDto(todoList);
         return new ResponseEntity(todoListResponseDto,HttpStatus.OK);
@@ -74,5 +70,4 @@ public class TodoListController {
         todoListService.deleteTodoList(listId);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
-
 }
