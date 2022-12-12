@@ -12,6 +12,7 @@ import solo.project.todolist.entity.TodoList;
 import solo.project.todolist.mapper.TodoListMapper;
 import solo.project.todolist.service.TodoListService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Slf4j
@@ -24,9 +25,7 @@ public class TodoListController {
     private final TodoListMapper todoListMapper;
 
     @PostMapping
-    public ResponseEntity createList(@RequestBody TodoListDto todoListDto){
-
-        log.info("-----> create 실행됨");
+    public ResponseEntity createList(@Valid @RequestBody TodoListDto todoListDto){
 
         TodoList todoList = todoListService.createTodoList(todoListMapper.todoListDtoToTodoList(todoListDto));
         TodoListResponseDto todoListResponseDto = todoListMapper.todoListToTodoListResponseDto(todoList);
@@ -53,8 +52,6 @@ public class TodoListController {
     public ResponseEntity updateList(@PathVariable Long listId,
                                      @RequestBody TodoListDto todoListDto){
 
-        log.info("-----> update 실행됨");
-
         TodoList todoList = todoListService.changeTodoList(listId, todoListMapper.todoListDtoToTodoList(todoListDto));
         TodoListResponseDto todoListResponseDto = todoListMapper.todoListToTodoListResponseDto(todoList);
         return new ResponseEntity(todoListResponseDto,HttpStatus.OK);
@@ -73,5 +70,4 @@ public class TodoListController {
         todoListService.deleteTodoList(listId);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
-
 }
