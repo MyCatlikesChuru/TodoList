@@ -32,7 +32,6 @@ public class TodoListService {
         return todoListRepository.findAll();
     }
 
-
     public TodoList changeTodoList(Long listId, TodoList todoList){
         TodoList findTodoList = findTodoList(listId);
 

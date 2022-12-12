@@ -15,6 +15,7 @@ import solo.project.todolist.service.TodoListService;
 import java.util.List;
 
 @Slf4j
+@CrossOrigin(origins = "https://todobackend.com")
 @RestController
 @AllArgsConstructor
 public class TodoListController {
