@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import solo.project.todolist.entity.TodoList;
+import solo.project.todolist.exception.ExceptionCode;
+import solo.project.todolist.exception.ServiceLogicException;
 import solo.project.todolist.repository.TodoListRepository;
 
 import java.util.List;
@@ -54,7 +56,7 @@ public class TodoListService {
     private TodoList findTodoList(Long listId) {
         Optional<TodoList> findTodoList = todoListRepository.findById(listId);
 
-        return findTodoList.orElseThrow(() -> new RuntimeException("Not find Todo List"));
+        return findTodoList.orElseThrow(() -> new ServiceLogicException(ExceptionCode.LIST_NOT_FOUND));
     }
 
     private TodoList saveTodoList(TodoList todoList) {
