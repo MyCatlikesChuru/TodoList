@@ -7,6 +7,18 @@ import solo.project.todolist.entity.TodoList;
 
 @Mapper(componentModel = "spring")
 public interface TodoListMapper {
-    TodoList todoListDtoToTodoList(TodoListDto todoListDto);
+    default TodoList todoListDtoToTodoList(TodoListDto todoListDto){
+        if ( todoListDto == null ) {
+            return null;
+        }
+
+        TodoList todoList = new TodoList();
+
+        todoList.setTitle( todoListDto.getTitle() );
+        todoList.setTodoOrder(todoListDto.getOrder());
+        todoList.setCompleted( todoListDto.getCompleted());
+
+        return todoList;
+    }
     TodoListResponseDto todoListToTodoListResponseDto(TodoList todoList);
 }

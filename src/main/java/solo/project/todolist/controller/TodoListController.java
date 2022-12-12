@@ -15,6 +15,7 @@ import solo.project.todolist.service.TodoListService;
 import java.util.List;
 
 @Slf4j
+//@CrossOrigin(origins = "https://todobackend.com")
 @RestController
 @AllArgsConstructor
 public class TodoListController {
@@ -25,9 +26,7 @@ public class TodoListController {
     @PostMapping
     public ResponseEntity createList(@RequestBody TodoListDto todoListDto){
 
-        log.info(todoListDto.getTitle());
-        log.info(String.valueOf(todoListDto.getTodoOrder()));
-        log.info(String.valueOf(todoListDto.getCompleted()));
+        log.info("-----> create 실행됨");
 
         TodoList todoList = todoListService.createTodoList(todoListMapper.todoListDtoToTodoList(todoListDto));
         TodoListResponseDto todoListResponseDto = todoListMapper.todoListToTodoListResponseDto(todoList);
@@ -53,6 +52,8 @@ public class TodoListController {
     @PatchMapping("/{listId}")
     public ResponseEntity updateList(@PathVariable Long listId,
                                      @RequestBody TodoListDto todoListDto){
+
+        log.info("-----> update 실행됨");
 
         TodoList todoList = todoListService.changeTodoList(listId, todoListMapper.todoListDtoToTodoList(todoListDto));
         TodoListResponseDto todoListResponseDto = todoListMapper.todoListToTodoListResponseDto(todoList);

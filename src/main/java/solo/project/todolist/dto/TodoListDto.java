@@ -9,7 +9,7 @@ import lombok.Setter;
 public class TodoListDto {
 
     private String title;
-    private Long todoOrder;
+    private Long order;
     private boolean completed;
 
 
