@@ -4,6 +4,7 @@ package solo.project.todolist.service;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import solo.project.todolist.dto.TodoListDto;
 import solo.project.todolist.entity.TodoList;
 import solo.project.todolist.exception.ExceptionCode;
 import solo.project.todolist.exception.ServiceLogicException;
@@ -32,12 +33,12 @@ public class TodoListService {
         return todoListRepository.findAll();
     }
 
-    public TodoList changeTodoList(Long listId, TodoList todoList){
+    public TodoList changeTodoList(Long listId, TodoListDto todoListDto){
         TodoList findTodoList = findTodoList(listId);
 
-        Optional.ofNullable(todoList.getTitle()).ifPresent(title -> findTodoList.setTitle(title));
-        Optional.ofNullable(todoList.getTodoOrder()).ifPresent(todoOrder -> findTodoList.setTodoOrder(todoOrder));
-        Optional.ofNullable(todoList.getCompleted()).ifPresent(completed -> findTodoList.setCompleted(completed));
+        Optional.ofNullable(todoListDto.getTitle()).ifPresent(title -> findTodoList.setTitle(title));
+        Optional.ofNullable(todoListDto.getOrder()).ifPresent(todoOrder -> findTodoList.setOrder(todoOrder));
+        Optional.ofNullable(todoListDto.getCompleted()).ifPresent(completed -> findTodoList.setCompleted(completed));
 
         return saveTodoList(findTodoList);
     }

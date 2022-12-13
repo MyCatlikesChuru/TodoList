@@ -1,15 +1,13 @@
 package solo.project.todolist.entity;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
-@Getter
-@Setter
+@Data
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 public class TodoList {
 
@@ -17,13 +15,13 @@ public class TodoList {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String title;
-    private Long todoOrder;
-    private boolean completed;
 
+    @Column(name = "todo_order", nullable = false)
+    private Long order;
 
-    public boolean getCompleted(){
-        return this.completed;
-    }
+    @Column(nullable = false)
+    private Boolean completed;
 
 }

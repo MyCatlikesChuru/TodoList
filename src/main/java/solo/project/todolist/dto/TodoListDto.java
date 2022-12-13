@@ -1,14 +1,14 @@
 package solo.project.todolist.dto;
 
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 
-@Getter
-@Setter
+@Data
+@AllArgsConstructor
 public class TodoListDto {
 
     @NotBlank(message = "제목은 공백이 아니어야 합니다.")
@@ -17,11 +17,6 @@ public class TodoListDto {
     @Positive(message = "양수만 허용합니다.")
     private Long order;
 
-    @NotBlank(message = "제목은 공백이 아니어야 합니다.")
-    private boolean completed;
+    private Boolean completed;
 
-
-    public boolean getCompleted(){
-        return completed;
-    }
 }

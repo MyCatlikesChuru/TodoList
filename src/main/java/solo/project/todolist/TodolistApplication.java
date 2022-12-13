@@ -20,13 +20,13 @@ public class TodolistApplication extends SpringBootServletInitializer {
 		return builder.sources(TodolistApplication.class);
 	}
 
-	@Bean
-	public WebMvcConfigurer corsConfigurer() {
-		return new WebMvcConfigurer() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("https://todobackend.com/");
-			}
-		};
-	}
+//	@Bean
+//	public WebMvcConfigurer corsConfigurer() {
+//		return new WebMvcConfigurer() {
+//			@Override
+//			public void addCorsMappings(CorsRegistry registry) {
+//				registry.addMapping("/**").allowedOrigins("https://todobackend.com/");
+//			}
+//		};
+//	}
 }

@@ -16,7 +16,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Slf4j
-//@CrossOrigin(origins = "https://todobackend.com")
+@CrossOrigin(origins = "https://todobackend.com")
 @RestController
 @AllArgsConstructor
 public class TodoListController {
@@ -37,7 +37,8 @@ public class TodoListController {
     public ResponseEntity getLists(){
 
         List<TodoList> todoLists = todoListService.getLists();
-        return new ResponseEntity(todoLists,HttpStatus.OK);
+        List<TodoListResponseDto> todoListResponseDtos = todoListMapper.todoListToTodoListResponseDto(todoLists);
+        return new ResponseEntity(todoListResponseDtos,HttpStatus.OK);
     }
 
     @GetMapping("/{listId}")
@@ -52,7 +53,7 @@ public class TodoListController {
     public ResponseEntity updateList(@PathVariable Long listId,
                                      @RequestBody TodoListDto todoListDto){
 
-        TodoList todoList = todoListService.changeTodoList(listId, todoListMapper.todoListDtoToTodoList(todoListDto));
+        TodoList todoList = todoListService.changeTodoList(listId, todoListDto);
         TodoListResponseDto todoListResponseDto = todoListMapper.todoListToTodoListResponseDto(todoList);
         return new ResponseEntity(todoListResponseDto,HttpStatus.OK);
     }
